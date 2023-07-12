@@ -1,0 +1,43 @@
+<div class="container">
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>PhoneNo</th>
+            <th>emailId</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let temProd of customers">
+            <td>{{temProd.name}}</td>
+            <td>{{temProd.phoneNo}}</td>
+            <td>{{temProd.emailId}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="container" style="width: 50%;">
+    <h2 class="card-title mt-4">Customer Details</h2>
+    <form [formGroup]="customerForm" (ngSubmit)="saveCustomer()">                                    
+        <div class="mb-3">
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name"  class="form-control" required>    
+        </div>  
+        <div class="mb-3">
+            <label for="date">phoneNo:</label>
+            <input type="text"  id="phoneNo" formControlName="phoneNo" class="form-control" required>       
+        </div>            
+        <div class="mb-3">
+            <label for="category">emailId : </label>
+            <input type="text" id="emailId" formControlName="emailId" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!customerForm.valid">Add Customer</button>
+        </div>
+    </form>
+</div>
+  
+
+    
+

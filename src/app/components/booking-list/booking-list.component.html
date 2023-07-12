@@ -1,0 +1,62 @@
+<div class="container" style="width: 50%;">
+    <legend>Please Enter Booking Details</legend>
+        <form [formGroup]="bookingForm" (ngSubmit)="saveBooking()">           
+          <div class="mb-3">
+            <label for="restaurantId" class="form-label" >Restaurant:</label>
+            <select id="restaurantId" class="form-control" formControlName="restaurantId" required>
+                <option value="">Select Restaurant</option>
+                <option *ngFor="let order of restaurants; let i = index" [value]="restaurants[i].id">
+                {{restaurants[i].name}}</option>                         
+            </select>            
+          </div>
+          <div class="mb-3">
+            <label for="customerId">Customer:</label>
+            <select id="customerId" class="form-control" formControlName="customerId" required>
+                <option value="">Select Customer</option>
+                <option *ngFor="let order of customers; let i = index" [value]="customers[i].id">
+                    {{customers[i].name}}</option>                         
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="bookingDate">bookingDate :</label>            
+            <input type="date"  id="bookingDate" class="form-control" formControlName="bookingDate">                     
+          </div>
+          <div class="mb-3">
+            <label for="bookingTime">Time:</label>
+            <select id="bookingTime" formControlName="bookingTime" class="form-control" required>
+              <option value="">Select Time</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="1:00">1:00 PM</option>
+              <option value="2:00">2:00 PM</option>
+              <option value="3:00">3:00 PM</option>
+              <option value="4:00">4:00 PM</option>
+              <option value="5:00">5:00 PM</option>
+              <option value="6:00">6:00 PM</option>
+              <option value="7:00">7:00 PM</option>
+              <option value="8:00">8:00 PM</option>
+              <option value="9:00">9:00 PM</option>
+              <option value="10:00">10:00 PM</option>
+              <option value="11:00">11:00 PM</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="persons">persons :</label>
+            <input type="text" id="persons" class="form-control" formControlName="persons" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Book Table</button>
+        </form>
+
+        <br/>
+        <div *ngIf="isBookingConfirmed" class="mb-3"  id="divshow" >
+            <ng-container *ngIf="bookingResp"> 
+                <h5 style="color: green;"> Booking Confirmed For Table No : {{bookingResp.tableNumber}} </h5>               
+                 your booking reference No is : {{bookingResp.id}}       
+            </ng-container>
+        </div>
+        <div *ngIf="errorMesage" class="mb-3"  id="divshow" >
+            <ng-container *ngIf="errorMesage"> 
+                <h5 style="color: red;"> {{errorMesage}}     </h5>  
+            </ng-container>
+        </div>
+  </div>
+
